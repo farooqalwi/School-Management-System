@@ -4,11 +4,25 @@ namespace School_Management_System
 {
     class Student
     {
+        private string name;
+        private string fatherName;
+        private string address;
+
         public string Name { get; set; }
         public string FatherName { get; set; }
         public string Address { get; set; }
 
-        public static void AddStudent()
+        public void View()
+        {
+            Console.WriteLine("Name: " + Name);
+            Console.WriteLine("Father's Name: " + FatherName);
+            Console.WriteLine("Address: " + Address);
+        }
+    }
+
+    class Program
+    {
+        public void AddStudent()
         {
             Student student = new Student();
             Console.Write("Student's Name: ");
@@ -20,17 +34,7 @@ namespace School_Management_System
             Console.WriteLine("Student added.");
         }
 
-        public static void ViewStudent()
-        {
-            Console.WriteLine("Name: ");
-            Console.WriteLine("Father's Name: ");
-            Console.WriteLine("Address: ");
-        }
-    }
-
-    class Program
-    {
-        static void Main()
+        public static void Main()
         {
             Console.WriteLine("1. Add a student\t2. View a student\t3. Delete a student\t'exit' to close menu");
 
@@ -44,10 +48,12 @@ namespace School_Management_System
                 switch (choice)
                 {
                     case "1":
-                        Student.AddStudent();
+                        Program program = new Program();
+                        program.AddStudent();
                         break;
                     case "2":
-                        Student.ViewStudent();
+                        Student student = new Student();
+                        student.View();
                         break;
                     case "3":
                         Console.WriteLine("Student deleted.");
