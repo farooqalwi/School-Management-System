@@ -1,35 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace School_Management_System
 {
     class Student
     {
-        public static string Name { get; set; }
-        public static string FatherName { get; set; }
-        public static string Address { get; set; }
+        public string Name { get; set; }
+        public string FatherName { get; set; }
+        public string Address { get; set; }
 
         public static void AddStudent()
         {
-
+            Student student = new Student();
             Console.Write("Student's Name: ");
-            Student.Name = Console.ReadLine();
+            student.Name = Console.ReadLine();
             Console.Write("Father's Name: ");
-            Student.FatherName = Console.ReadLine();
+            student.FatherName = Console.ReadLine();
             Console.Write("Address: ");
-            Student.Address = Console.ReadLine();
+            student.Address = Console.ReadLine();
             Console.WriteLine("Student added.");
         }
 
         public static void ViewStudent()
         {
-            Console.WriteLine("Name: " + Name);
-            Console.WriteLine("Father's Name: " + FatherName);
-            Console.WriteLine("Address: " + Address);
-
+            Console.WriteLine("Name: ");
+            Console.WriteLine("Father's Name: ");
+            Console.WriteLine("Address: ");
         }
     }
 
