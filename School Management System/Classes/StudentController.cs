@@ -35,16 +35,19 @@ namespace School_Management_System
                     if (id == obj.ID)
                     {
                         matchFound = true;
-                        if (matchFound)
-                        {
-                            Console.WriteLine("This ID already has been used.");
-                        }
+
                     }
-                    else
-                    {
-                        studentsList.Add(student);
-                        Console.WriteLine("\nStudent added.");
-                    }
+                }
+
+                if (matchFound)
+                {
+                    Console.WriteLine("This ID already has been used.");
+                }
+
+                else
+                {
+                    studentsList.Add(student);
+                    Console.WriteLine("\nStudent added.");
                 }
 
             }
