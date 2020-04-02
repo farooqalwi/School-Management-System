@@ -15,6 +15,7 @@ namespace School_Management_System
             Console.WriteLine("Father's Name:\t" + FatherName);
             Console.WriteLine("Address:\t" + Address);
             Console.WriteLine("Student's ID:\t" + ID);
+            Console.WriteLine(".........................");
         }
     }
 }

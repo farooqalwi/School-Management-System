@@ -28,18 +28,7 @@ namespace School_Management_System
                 student.Address = address;
                 student.ID = id;
 
-                bool matchFound = false;
-
-                foreach (Student obj in studentsList)
-                {
-                    if (id == obj.ID)
-                    {
-                        matchFound = true;
-                        
-                    }
-                }
-
-                if (matchFound)
+                if (isStudentIDUnique(id))
                 {
                     Console.WriteLine("This ID already has been used.");
                 }
@@ -63,6 +52,21 @@ namespace School_Management_System
             {
                 student.Display();
             }
+            Console.WriteLine("\nStudent List viewed.");
+        }
+
+        private bool isStudentIDUnique(string id)
+        {
+            bool matchFound = false;
+
+            foreach (Student obj in studentsList)
+            {
+                if (id == obj.ID)
+                {
+                    matchFound = true;
+                }
+            }
+            return matchFound;
         }
     }
 }
