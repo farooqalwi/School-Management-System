@@ -31,6 +31,9 @@ namespace School_Management_System
                         studentController.View();
                         break;
                     case "3":
+                        Console.Write("Enter Student's ID: ");
+                        string id = Console.ReadLine();
+                        studentController.Delete(id);
                         Console.WriteLine("Student deleted.");
                         break;
                     case "4":

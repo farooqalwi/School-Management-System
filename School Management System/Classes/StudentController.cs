@@ -18,32 +18,39 @@ namespace School_Management_System
             Console.Write("Address:\t");
             address = Console.ReadLine();
             Console.Write("Student's ID:\t");
-            id = Console.ReadLine();
 
-            if (id != "")
+            bool isIDValid = true;
+
+            do
             {
-                Student student = new Student();
-                student.Name = name;
-                student.FatherName = fatherName;
-                student.Address = address;
-                student.ID = id;
+                id = Console.ReadLine();
 
-                if (isStudentIDUnique(id))
+                if (id != "")
                 {
-                    Console.WriteLine("This ID already has been used.");
-                }
+                    Student student = new Student();
+                    student.Name = name;
+                    student.FatherName = fatherName;
+                    student.Address = address;
+                    student.ID = id;
 
+                    if (!isStudentIDUnique(id))
+                    {
+                        isIDValid = false;
+                        studentsList.Add(student);
+                        Console.WriteLine("\nStudent added.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("This ID is already used.");
+                        Console.Write("Please Enter a valid ID: ");
+                    }
+                }
                 else
                 {
-                    studentsList.Add(student);
-                    Console.WriteLine("\nStudent added.");
+                    Console.WriteLine("ID cannot be empty.");
+                    Console.Write("Please Enter a valid ID: ");
                 }
-
-            }
-            else
-            {
-                Console.WriteLine("Please Enter Student's ID.");
-            }
+            } while (isIDValid);
         }
 
         public void View()
@@ -52,6 +59,7 @@ namespace School_Management_System
             {
                 student.Display();
             }
+
             Console.WriteLine("\nStudent List viewed.");
         }
 
@@ -61,12 +69,24 @@ namespace School_Management_System
 
             foreach (Student obj in studentsList)
             {
-                if (id == obj.ID)
-                {
-                    matchFound = true;
-                }
+                return id == obj.ID;
             }
             return matchFound;
+        }
+
+        public void Delete(string id)
+        {
+            int ind = 0;
+
+            foreach (Student obj in studentsList)
+            {
+                if (id == obj.ID)
+                {
+                    ind = studentsList.IndexOf(obj);
+                }
+            }
+
+            studentsList.RemoveAt(ind);
         }
     }
 }
