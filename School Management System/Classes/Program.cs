@@ -37,14 +37,10 @@ namespace School_Management_System
                         studentController.View();
                         break;
                     case "3":
-                        Console.Write("Enter Student's ID: ");
-                        id = Console.ReadLine();
-                        studentController.Delete(id);
+                        studentController.DeleteStudent();
                         break;
                     case "4":
-                        Console.Write("Enter Student's ID: ");
-                        id = Console.ReadLine();
-                        studentController.Edit(id);
+                        studentController.Edit();
                         break;
                     case "5":
                         exit = true;
