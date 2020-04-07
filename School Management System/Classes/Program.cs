@@ -34,13 +34,13 @@ namespace School_Management_System
                         studentController.AddStudent();
                         break;
                     case "2":
-                        studentController.View();
+                        studentController.ViewStudentList();
                         break;
                     case "3":
                         studentController.DeleteStudent();
                         break;
                     case "4":
-                        studentController.Edit();
+                        studentController.EditStudent();
                         break;
                     case "5":
                         exit = true;

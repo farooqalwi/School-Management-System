@@ -30,7 +30,7 @@ namespace School_Management_System
             Console.WriteLine("Student added with ID {0}", id);
         }
 
-        public void View()
+        public void ViewStudentList()
         {
             foreach (Student student in studentsList)
             {
@@ -67,7 +67,7 @@ namespace School_Management_System
             }
         }
 
-        public void Edit()
+        public void EditStudent()
         {
             if (studentsList.Count == 0)
             {
