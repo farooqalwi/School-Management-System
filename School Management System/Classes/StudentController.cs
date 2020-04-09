@@ -58,6 +58,7 @@ namespace School_Management_System
                     if (id == obj.ID)
                     {
                         index = studentsList.IndexOf(obj);
+                        // No need to continue the forEach loop
                         break;
                     }
                 }
@@ -91,6 +92,7 @@ namespace School_Management_System
                         obj.FatherName = Console.ReadLine();
                         Console.Write("Enter new Address: ");
                         obj.Address = Console.ReadLine();
+                        // No need to continue the forEach loop
                         break;
                     }
                 }
@@ -115,7 +117,6 @@ namespace School_Management_System
                 }
                 else
                 {
-                    // Farooq: why we need this if
                     if (studentsList.Count == 0)
                     {
                         isIDValid = getNewID;
@@ -155,7 +156,6 @@ namespace School_Management_System
                     }
 
                     // Print error message
-                    // Farooq: why we need this if
                     if (isIDValid == false && getNewID == false)
                     {
                         Console.WriteLine("Student ID {0} is not present. Try again", id);
@@ -164,6 +164,29 @@ namespace School_Management_System
             } while (!isIDValid);
 
             return id;
+        }
+
+        public void SearchStudent()
+        {
+            Console.Write("Enter student's name: ");
+            string name = Console.ReadLine();
+
+            if (studentsList.Count == 0)
+            {
+                Console.WriteLine("You must first enter students");
+            }
+            else
+            {
+                foreach (Student obj in studentsList)
+                {
+                    if (name == obj.Name)
+                    {
+                        obj.Display();
+                        Console.WriteLine("Your search is given.");
+                        break;
+                    }
+                }
+            }
         }
     }
 }
