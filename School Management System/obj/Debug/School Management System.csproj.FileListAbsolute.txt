@@ -4,3 +4,4 @@ D:\Sir Talha Mansoor\Practice Files\School-Management-System\School Management S
 D:\Sir Talha Mansoor\Practice Files\School-Management-System\School Management System\obj\Debug\School Management System.csprojAssemblyReference.cache
 D:\Sir Talha Mansoor\Practice Files\School-Management-System\School Management System\obj\Debug\School Management System.exe
 D:\Sir Talha Mansoor\Practice Files\School-Management-System\School Management System\obj\Debug\School Management System.pdb
+D:\Sir Talha Mansoor\Practice Files\School-Management-System\School Management System\obj\Debug\School Management System.csproj.CoreCompileInputs.cache

@@ -168,8 +168,12 @@ namespace School_Management_System
 
         public void SearchStudent()
         {
-            Console.Write("Enter student's name: ");
-            string name = Console.ReadLine();
+            Console.WriteLine("-If you want to search student by name then press 1");
+            Console.WriteLine("-If you want to search student by fatherName then press 2");
+            Console.WriteLine("-If you want to search student by address then press 3");
+
+            Console.Write("Choose an appropriate option: ");
+            string option = Console.ReadLine();
 
             if (studentsList.Count == 0)
             {
@@ -177,14 +181,50 @@ namespace School_Management_System
             }
             else
             {
-                foreach (Student obj in studentsList)
+                switch (option)
                 {
-                    if (name == obj.Name)
-                    {
-                        obj.Display();
-                        Console.WriteLine("Your search is given.");
+                    case "1":
+                        Console.Write("Enter student's name: ");
+                        string name = Console.ReadLine();
+                        foreach (Student obj in studentsList)
+                        {
+                            if (name == obj.Name)
+                            {
+                                obj.Display();
+                                Console.WriteLine("Your search is given.");
+                                break;
+                            }
+                        }
                         break;
-                    }
+                    case "2":
+                        Console.Write("Enter father's name: ");
+                        string fatherName = Console.ReadLine();
+                        foreach (Student obj in studentsList)
+                        {
+                            if (fatherName == obj.FatherName)
+                            {
+                                obj.Display();
+                                Console.WriteLine("Your search is given.");
+                                break;
+                            }
+                        }
+                        break;
+                    case "3":
+                        Console.Write("Enter address: ");
+                        string address = Console.ReadLine();
+                        foreach (Student obj in studentsList)
+                        {
+                            if (address == obj.Address)
+                            {
+                                obj.Display();
+                                Console.WriteLine("Your search is given.");
+                                break;
+                            }
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        break;
                 }
             }
         }
