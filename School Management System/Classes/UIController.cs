@@ -1,103 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace School_Management_System
+namespace School_Management_System.Classes
 {
-    class StudentController
+    class UIController
     {
-        private List<Student> studentsList = new List<Student>();
+        // An object of StudentList Class to call its functions.
+        StudentList studentList = new StudentList();
 
-        public void AddStudent()
+        public void GetData()
         {
             string name, fatherName, address;
-
-            Console.Write("Student's Name:\t");
+            Console.Write("Enter your Name: ");
             name = Console.ReadLine();
-            Console.Write("Father's Name:\t");
+            Console.Write("Enter your Father's Name: ");
             fatherName = Console.ReadLine();
-            Console.Write("Address:\t");
+            Console.Write("Enter your Address: ");
             address = Console.ReadLine();
 
             var id = getStudentID(true);
 
-            Student student = new Student();
-            student.Name = name;
-            student.FatherName = fatherName;
-            student.Address = address;
-            student.ID = id;
-
-            studentsList.Add(student);
-            Console.WriteLine("Student added with ID {0}", id);
-        }
-
-        public void ViewStudentList()
-        {
-            foreach (Student student in studentsList)
+            if (studentList.AddStudent(name, fatherName, address, id))
             {
-                student.Display();
-            }
-
-            Console.WriteLine("\nStudent List viewed.");
-        }
-
-        public void DeleteStudent()
-        {
-            if (studentsList.Count == 0)
-            {
-                Console.WriteLine("You must first enter students");
+                Console.WriteLine("Student added with ID {0}", id);
             }
             else
             {
-                Console.WriteLine("You must enter an exisiting Student ID");
-                var id = getStudentID(false);
-
-                int index = -1;
-
-                foreach (Student obj in studentsList)
-                {
-                    if (id == obj.ID)
-                    {
-                        index = studentsList.IndexOf(obj);
-                        // No need to continue the forEach loop
-                        break;
-                    }
-                }
-
-                studentsList.RemoveAt(index);
-                Console.WriteLine("Student Deleted with ID {0}", id);
-            }
-        }
-
-        public void EditStudent()
-        {
-            if (studentsList.Count == 0)
-            {
-                Console.WriteLine("You must first enter students");
-            }
-            else
-            {
-                Console.WriteLine("You must enter an exisiting Student ID");
-                var id = getStudentID(false);
-
-                foreach (Student obj in studentsList)
-                {
-                    if (id == obj.ID)
-                    {
-                        Console.WriteLine("Old Details.");
-                        obj.Display();
-
-                        Console.Write("Enter new Name: ");
-                        obj.Name = Console.ReadLine();
-                        Console.Write("Enter Father's Name: ");
-                        obj.FatherName = Console.ReadLine();
-                        Console.Write("Enter new Address: ");
-                        obj.Address = Console.ReadLine();
-                        // No need to continue the forEach loop
-                        break;
-                    }
-                }
-
-                Console.WriteLine("Student's details edited with ID {0}", id);
+                Console.WriteLine("Student cannot be added with ID {0}", id);
             }
         }
 
@@ -117,7 +45,7 @@ namespace School_Management_System
                 }
                 else
                 {
-                    if (studentsList.Count == 0)
+                    if (studentList.studentsList.Count == 0)
                     {
                         isIDValid = getNewID;
                     }
@@ -125,7 +53,7 @@ namespace School_Management_System
                     // Now we need to make sure 
                     // either the ID is unique
                     // or the ID is present
-                    foreach (Student obj in studentsList)
+                    foreach (Student obj in studentList.studentsList)
                     {
                         // We need new student ID
                         // Make sure ID has not been used
@@ -166,16 +94,88 @@ namespace School_Management_System
             return id;
         }
 
+        public void ViewStudentList()
+        {
+            foreach (Student student in studentList.studentsList)
+            {
+                student.Display();
+            }
+
+            Console.WriteLine("\nStudent List viewed.");
+        }
+
+        public void DeleteStudent()
+        {
+            if (studentList.studentsList.Count == 0)
+            {
+                Console.WriteLine("You must first enter students");
+            }
+            else
+            {
+                Console.WriteLine("You must enter an exisiting Student ID");
+                var id = getStudentID(false);
+
+                int index = -1;
+
+                foreach (Student obj in studentList.studentsList)
+                {
+                    if (id == obj.ID)
+                    {
+                        index = studentList.studentsList.IndexOf(obj);
+                        // No need to continue the forEach loop
+                        break;
+                    }
+                }
+
+                studentList.studentsList.RemoveAt(index);
+                Console.WriteLine("Student Deleted with ID {0}", id);
+            }
+        }
+
+        public void EditStudent()
+        {
+            if (studentList.studentsList.Count == 0)
+            {
+                Console.WriteLine("You must first enter students");
+            }
+            else
+            {
+                Console.WriteLine("You must enter an exisiting Student ID");
+                var id = getStudentID(false);
+
+                foreach (Student obj in studentList.studentsList)
+                {
+                    if (id == obj.ID)
+                    {
+                        Console.WriteLine("Old Details.");
+                        obj.Display();
+
+                        Console.Write("Enter new Name: ");
+                        obj.Name = Console.ReadLine();
+                        Console.Write("Enter Father's Name: ");
+                        obj.FatherName = Console.ReadLine();
+                        Console.Write("Enter new Address: ");
+                        obj.Address = Console.ReadLine();
+                        // No need to continue the forEach loop
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Student's details edited with ID {0}", id);
+            }
+        }
+
         public void SearchStudent()
         {
             Console.WriteLine("-If you want to search student by name then press 1");
             Console.WriteLine("-If you want to search student by fatherName then press 2");
             Console.WriteLine("-If you want to search student by address then press 3");
+            Console.WriteLine("-If you want to search student by ID then press 4");
 
             Console.Write("Choose an appropriate option: ");
             string option = Console.ReadLine();
 
-            if (studentsList.Count == 0)
+            if (studentList.studentsList.Count == 0)
             {
                 Console.WriteLine("You must first enter students");
             }
@@ -184,9 +184,9 @@ namespace School_Management_System
                 switch (option)
                 {
                     case "1":
-                        Console.Write("Enter student's name: ");
+                        Console.Write("Enter your Name: ");
                         string name = Console.ReadLine();
-                        foreach (Student obj in studentsList)
+                        foreach (Student obj in studentList.studentsList)
                         {
                             if (name == obj.Name)
                             {
@@ -197,9 +197,9 @@ namespace School_Management_System
                         }
                         break;
                     case "2":
-                        Console.Write("Enter father's name: ");
+                        Console.Write("Enter your Father's Name: ");
                         string fatherName = Console.ReadLine();
-                        foreach (Student obj in studentsList)
+                        foreach (Student obj in studentList.studentsList)
                         {
                             if (fatherName == obj.FatherName)
                             {
@@ -210,11 +210,24 @@ namespace School_Management_System
                         }
                         break;
                     case "3":
-                        Console.Write("Enter address: ");
+                        Console.Write("Enter your Address: ");
                         string address = Console.ReadLine();
-                        foreach (Student obj in studentsList)
+                        foreach (Student obj in studentList.studentsList)
                         {
                             if (address == obj.Address)
+                            {
+                                obj.Display();
+                                Console.WriteLine("Your search is given.");
+                                break;
+                            }
+                        }
+                        break;
+                    case "4":
+                        Console.Write("Enter your ID: ");
+                        string id = Console.ReadLine();
+                        foreach (Student obj in studentList.studentsList)
+                        {
+                            if (id == obj.ID)
                             {
                                 obj.Display();
                                 Console.WriteLine("Your search is given.");

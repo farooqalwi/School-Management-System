@@ -1,4 +1,5 @@
 ﻿using System;
+using School_Management_System.Classes;
 
 namespace School_Management_System
 {
@@ -9,8 +10,8 @@ namespace School_Management_System
             Console.WriteLine("Welcome to ABC School");
             Console.WriteLine("_____________________");
 
-            // An object of StudentController Class to call its methods.
-            StudentController studentController = new StudentController();
+            // An object of UIController Class to call its functions.
+            UIController uiController = new UIController();
 
             string id;
             string choice;
@@ -32,19 +33,19 @@ namespace School_Management_System
                 switch (choice)
                 {
                     case "1":
-                        studentController.AddStudent();
+                        uiController.GetData();
                         break;
                     case "2":
-                        studentController.ViewStudentList();
+                        uiController.ViewStudentList();
                         break;
                     case "3":
-                        studentController.DeleteStudent();
+                        uiController.DeleteStudent();
                         break;
                     case "4":
-                        studentController.EditStudent();
+                        uiController.EditStudent();
                         break;
                     case "5":
-                        studentController.SearchStudent();
+                        uiController.SearchStudent();
                         break;
                     case "6":
                         exit = true;
